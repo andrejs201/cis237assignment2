@@ -20,6 +20,8 @@ namespace cis237assignment2
         char[,] maze;
         int xStart;
         int yStart;
+        int xPos;
+        int yPos;
 
         /// <summary>
         /// Default Constuctor to setup a new maze solver.
@@ -40,9 +42,12 @@ namespace cis237assignment2
             //The variables are assigned so they can be used anywhere they are needed within this class. 
             this.maze = maze;
             this.xStart = xStart;
+            this.xPos = xStart;
             this.yStart = yStart;
+            this.yPos = yStart;
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
+            mazeTraversal();
         }
 
 
@@ -54,6 +59,7 @@ namespace cis237assignment2
         private void mazeTraversal()
         {
             //Implement maze traversal recursive call
+            
         }
     }
 }
