@@ -22,7 +22,7 @@ namespace cis237assignment2
         int yStart;
         int xPos;
         int yPos;
-        bool isPath;
+        bool mazeComplete = false;
 
         /// <summary>
         /// Default Constuctor to setup a new maze solver.
@@ -61,25 +61,34 @@ namespace cis237assignment2
         {
             //Implement maze traversal recursive call
             maze[xPos, yPos] = 'X';
-            if (x < maze.GetLength(0) && maze[xPos + 1, yPos] == '.')
+            if (xPos == 0 || xPos == maze.GetLength(0) || yPos == 0 || yPos == maze.GetLength(1))
+            { }
+            else
             {
-                xPos++;
-                mazeTraversal();
-            }
-            else if (maze[xPos, yPos + 1] != null && maze[xPos, yPos + 1] == '.')
-            {
-                yPos++;
-                mazeTraversal();
-            }
-            else if (maze[xPos - 1, yPos] != null && maze[xPos - 1, yPos] == '.')
-            {
-                xPos--;
-                mazeTraversal();
-            }
-            else if (maze[xPos, yPos - 1] != null && maze[xPos, yPos - 1] == '.')
-            {
-                yPos--;
-                mazeTraversal();
+                if (maze[xPos + 1, yPos] == '.')
+                {
+                    xPos++;
+                    mazeTraversal();
+                    xPos--;
+                }
+                if (maze[xPos, yPos + 1] == '.')
+                {
+                    yPos++;
+                    mazeTraversal();
+                    yPos--;
+                }
+                if (maze[xPos - 1, yPos] == '.')
+                {
+                    xPos--;
+                    mazeTraversal();
+                    xPos++;
+                }
+                if (maze[xPos, yPos - 1] == '.')
+                {
+                    yPos--;
+                    mazeTraversal();
+                    yPos++;
+                }
             }
         }
     }
