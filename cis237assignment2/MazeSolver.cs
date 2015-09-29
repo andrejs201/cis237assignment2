@@ -22,6 +22,7 @@ namespace cis237assignment2
         int yStart;
         int xPos;
         int yPos;
+        bool isPath;
 
         /// <summary>
         /// Default Constuctor to setup a new maze solver.
@@ -59,7 +60,27 @@ namespace cis237assignment2
         private void mazeTraversal()
         {
             //Implement maze traversal recursive call
-            
+            maze[xPos, yPos] = 'X';
+            if (x < maze.GetLength(0) && maze[xPos + 1, yPos] == '.')
+            {
+                xPos++;
+                mazeTraversal();
+            }
+            else if (maze[xPos, yPos + 1] != null && maze[xPos, yPos + 1] == '.')
+            {
+                yPos++;
+                mazeTraversal();
+            }
+            else if (maze[xPos - 1, yPos] != null && maze[xPos - 1, yPos] == '.')
+            {
+                xPos--;
+                mazeTraversal();
+            }
+            else if (maze[xPos, yPos - 1] != null && maze[xPos, yPos - 1] == '.')
+            {
+                yPos--;
+                mazeTraversal();
+            }
         }
     }
 }
