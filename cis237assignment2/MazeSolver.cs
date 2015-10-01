@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Solve the maze
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace cis237assignment2
         int xPos;
         int yPos;
         int length;
+        bool finished;
 
         /// <summary>
         /// Default Constuctor to setup a new maze solver.
@@ -47,6 +50,7 @@ namespace cis237assignment2
             this.yStart = yStart;
             this.yPos = yStart;
             this.length = (int)Math.Sqrt(maze.Length);
+            this.finished = false;
 
             //Do work needed to use mazeTraversal recursive call and solve the maze.
             mazeTraversal();
@@ -62,35 +66,56 @@ namespace cis237assignment2
         {
             //Implement maze traversal recursive call
             maze[xPos, yPos] = 'X';
-            if (xPos == 0 || xPos == length || yPos == 0 || yPos == length)
-            { }
-            else
+            if (xPos == 0 || xPos == length - 1 || yPos == 0 || yPos == length - 1) //check for finished state
             {
-                if (maze[xPos + 1, yPos] == '.')
-                {
-                    xPos++;
-                    mazeTraversal();
-                    xPos--;
-                }
-                if (maze[xPos, yPos + 1] == '.')
-                {
-                    yPos++;
-                    mazeTraversal();
-                    yPos--;
-                }
-                if (maze[xPos - 1, yPos] == '.')
-                {
-                    xPos--;
-                    mazeTraversal();
-                    xPos++;
-                }
-                if (maze[xPos, yPos - 1] == '.')
-                {
-                    yPos--;
-                    mazeTraversal();
-                    yPos++;
-                }
+                finished = true;
+                PrintMaze();
             }
+            else    //move to a new position
+            {
+                if (maze[xPos + 1, yPos] == '.' && finished == false)
+                {
+                    xPos++;
+                    PrintMaze();
+                    mazeTraversal();
+                    xPos--;
+                }
+                if (maze[xPos, yPos + 1] == '.' && finished == false)
+                {
+                    yPos++;
+                    PrintMaze();
+                    mazeTraversal();
+                    yPos--;
+                }
+                if (maze[xPos - 1, yPos] == '.' && finished == false)
+                {
+                    xPos--;
+                    PrintMaze();
+                    mazeTraversal();
+                    xPos++;
+                }
+                if (maze[xPos, yPos - 1] == '.' && finished == false)
+                {
+                    yPos--;
+                    PrintMaze();
+                    mazeTraversal();
+                    yPos++;
+                }
+                maze[xPos, yPos] = 'O';
+            }
+        }
+
+        private void PrintMaze()
+        {
+            for (int x = 0; x < length; x++)
+            {
+                for (int y = 0; y < length; y++)
+                {
+                    Console.Write(maze[x, y] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
         }
     }
 }

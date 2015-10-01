@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Andrejs Tomsons
+//Assignment 2
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,13 +50,14 @@ namespace cis237assignment2
             /// </summary>
             MazeSolver mazeSolver = new MazeSolver();
 
+
+            //Create the second maze by transposing the first maze
+            char[,] maze2 = transposeMaze(maze1);
+
             /// <summary>
             /// Tell the instance to solve the first maze with the passed maze, and start coordinates.
             /// </summary>
             mazeSolver.SolveMaze(maze1, X_START, Y_START);
-
-            //Create the second maze by transposing the first maze
-            char[,] maze2 = transposeMaze(maze1);
 
             //Solve the transposed maze.
             mazeSolver.SolveMaze(maze2, X_START, Y_START);
@@ -78,8 +82,15 @@ namespace cis237assignment2
         /// <returns>transposedMaze</returns>
         static char[,] transposeMaze(char[,] mazeToTranspose)
         {
-            //Write code her to create a transposed maze.
-            return new char[1, 1];
+            char[,] temp = new char[12, 12];    //make temporary array
+            for (int x = 0; x < Math.Sqrt(mazeToTranspose.Length); x++)
+            {
+                for (int y = 0; y < Math.Sqrt(mazeToTranspose.Length); y++)
+                {
+                    temp[x, y] = mazeToTranspose[y, x]; //Switch x and y
+                }
+            }
+            return temp;
         }
     }
 }

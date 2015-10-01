@@ -1,6 +1,7 @@
-# Assignment 1 - Review of C# Basic Concepts and Introduction to Git
+﻿# Assignment 1 - Review of C# Basic Concepts and Introduction to Git
 
 ## Author
+Andrejs Tomsons
 
 ## Description
 
@@ -27,5 +28,4 @@ Don't forget that you must have a base case for your recursive method or you wil
 ## Outside Resources Used
 
 ## Known Problems, Issues, And/Or Errors in the Program
-
 
